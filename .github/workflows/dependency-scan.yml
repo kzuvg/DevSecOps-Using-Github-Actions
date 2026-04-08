@@ -23,7 +23,7 @@ jobs:
         run: pip install pip-audit
 
       - name: Audit Dependency
-        run: pip-audit -r requirment.txt
+        run: pip-audit -r requirments.txt
 
         
 
