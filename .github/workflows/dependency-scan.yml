@@ -1,0 +1,30 @@
+# Used pip Audit
+# this actions is used for scanning the python dependencies 
+
+name: Dependency Scan
+
+on:
+  workflow_call:
+
+jobs:
+
+  dependency-scan:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-verions: "3.12"
+
+      - name: Install Pip Audit
+        run: pip install pip-audit
+
+      - name: Audit Dependency
+        run: pip-audit -r requirment.txt
+
+        
+
+  
