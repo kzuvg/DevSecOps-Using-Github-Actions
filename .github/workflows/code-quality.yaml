@@ -1,3 +1,5 @@
+# uses flake8 and bandit 
+
 name: Code Quality
 
 on:
