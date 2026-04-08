@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishcard App</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        .card {
+            background: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 30px auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background: #667eea;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Welcome to Wishcard App 🎉</h1>
+        <p>Your app is running successfully using Flask + Docker 🚀</p>
+
+        <div class="card">
+            <h2>Hello 👋</h2>
+            <p>This is your deployed web app.</p>
+            <button class="btn" onclick="checkHealth()">Check Server Health</button>
+            <p id="status"></p>
+        </div>
+    </div>
+
+    <script>
+        function checkHealth() {
+            fetch('/health')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('status').innerText = data;
+                })
+                .catch(err => {
+                    document.getElementById('status').innerText = "Error connecting to server";
+                });
+        }
+    </script>
+
+</body>
+</html>
