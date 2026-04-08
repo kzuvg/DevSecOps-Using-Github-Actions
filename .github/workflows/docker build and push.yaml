@@ -1,0 +1,33 @@
+# build the dockerfile, tags the image and pushes it to dockerhub
+
+
+name: Docker build and Push
+
+on: 
+  workflow_call:
+
+
+jobs:
+
+  buil-and-push:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USER}}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build & Push to DockerHub
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+
+            ${{ vars.DOCKERHUB_USER }}/github-action-app:${{ github.ref_name }}
+            ${{ vars.DOCKERHUB_USER }}/github-action-app:latest
+          
